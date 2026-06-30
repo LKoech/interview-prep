@@ -9,6 +9,9 @@ A backend-heavy Python application that helps you practice for job interviews. P
 3. **Scores your answers** — evaluates against 5 criteria (concrete examples, metrics, conciseness, relevance, STAR format) with a 1-5 score each
 4. **Real-time mock interviews** — WebSocket endpoint that sends questions one at a time and gives instant feedback
 
+ ## Demo
+  ![Demo](assets/demo.gif)
+
 ## Tech Stack
 
 - **FastAPI** — async REST API with auto-generated Swagger docs
@@ -86,8 +89,28 @@ streamlit run streamlit_app.py
 | POST | `/api/v1/feedback/evaluate` | Evaluate an answer |
 | WS | `/ws/interview/{session_id}` | Real-time mock interview |
 
+
+### API Swagger POST Request Sucessful
+![alt text](assets/POSTRequestBodySwagger.png)
+
+![alt text](assets/POSTRequestSuccessSwagger.png)
+
+
 ## Running Tests
 
 ```bash
-pytest
+pytest -v
+```
+
+The test suite covers **23 tests** across 3 areas:
+
+| Test file | What it tests |
+|-----------|---------------|
+| `test_jd_parser.py` | Skill extraction from job descriptions (Python, Redis, Kubernetes, etc.) |
+| `test_strategies.py` | Question generation strategies (behavioral, technical, system design) |
+| `test_feedback_service.py` | Answer evaluation (concrete examples, metrics, STAR format, conciseness) |
+
+Run a specific test file:
+```bash
+pytest tests/test_jd_parser.py -v
 ```
